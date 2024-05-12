@@ -10,6 +10,7 @@ async function getNote(noteId: string) {
 export default async function NotePage({params}:any) {
     const note = await getNote(params.id)
     return(
+        <main className="flex min-h-screen flex-col items-center justify-between p-24">
         <div>
             <h1>notes/{note.id}</h1>
             <div>
@@ -18,5 +19,6 @@ export default async function NotePage({params}:any) {
                 <p>{note.created}</p>
             </div>
         </div>
+        </main>
     )
 }

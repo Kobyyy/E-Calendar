@@ -18,6 +18,7 @@ async function getNotes() {
 export default async function NotesPage() {
     const notes = await getNotes()
     return(
+        <main className="flex min-h-screen flex-col items-center justify-between p-24">
 <div>
     <h1>Notes</h1>
     <div>
@@ -27,17 +28,18 @@ export default async function NotesPage() {
     </div>
     <CreateNote/>
 </div>
+    </main>
     );    
 }
 
 function Note({note}:any){
-    const {id,title,content,created} = note || {}
+    const {id,Title,Content,created} = note || {}
 
     return(
         <Link href = {`/notes/${id}`}>
-            <div>
-                <h2>{title}</h2>
-                <h5>{content}</h5>
+            <div className='resize-box hover-test'>
+                <h2>{Title}</h2>
+                <h5>{Content}</h5>
                 <p>{created}</p>
             </div>
         </Link>

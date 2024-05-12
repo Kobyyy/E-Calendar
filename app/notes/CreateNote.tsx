@@ -15,11 +15,13 @@ export default function createNote(){
         });
     }
     return(
-        <form onSubmit ={create}>
+    <div >
+        <form onSubmit ={create} className="hover-test flex duration-0 transition-none bg-indigo-400 hover:translate-y-12" >
             <h3>Create a new Note</h3>
-            <input type = "text" placeholder="Title" value={title} onChange={(e) =>setTitle(e.target.value)}/>
-            <textarea placeholder="Content" value = {content} onChange={(e)=>setContent(e.target.value)}/>
+            <input className = "flex rounded-md" type = "text" placeholder="Title" value={title} onChange={(e) =>setTitle(e.target.value)}/>
+            <textarea className = "rounded-md" placeholder="Content" value = {content} onChange={(e)=>setContent(e.target.value)}/>
             <button type="submit">Create Note</button>
         </form>
+    </div>
     )
 }
