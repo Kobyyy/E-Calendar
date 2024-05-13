@@ -43,7 +43,4 @@ body {
     hover:text-zinc-600 transition-all 
     duration-300 ease-linear
   }
-  .resize-box{
-    @apply resize
-  }
 }
