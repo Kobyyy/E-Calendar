@@ -1,34 +1,26 @@
 'use client'
-// LoginPage.js
-
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import PocketBase from 'pocketbase'; // Assuming you've installed this package
+import { pb, currentUser } from '../src/lib/pocketbase'
 
 export default function LoginPage() {
   const router = useRouter();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
+  
   const handleSubmit = async (e:any) => {
-    e.preventDefault(); // Prevent default form submission behavior
-
+    e.preventDefault();
     try {
-      const pb = new PocketBase('http://127.0.0.1:8090'); // Adjust the PocketBase URL
-      const authData = await pb.collection('Users').authWithPassword(
-        username, // Use the actual username entered by the user
-        password // Use the actual password entered by the user
-      );
-      console.log(pb.authStore.isValid)
+      // Send a request to the server-side API route for authentication
+      await pb.collection('Users').authWithPassword(username,password)
+      console.log(currentUser)
       if (pb.authStore.isValid) {
-        // Redirect to the desired page after successful authentication
-        router.push('/notes');
+        router.push('/dashboard'); // Redirect to the notes page upon successful login
       } else {
-        alert('Authentication failed. Please check your credentials.');
+        alert("auth error"); // Display an error message if authentication fails
       }
     } catch (error) {
-      console.error('Authentication error:', error);
-      alert(`Error: ${error}`);
+      console.error('Error during login:', error);
     }
   };
 
