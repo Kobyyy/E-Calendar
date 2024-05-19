@@ -1,8 +1,5 @@
-import Link from 'next/link'
-import CreateNote from './CreateNote';
 import { signOut } from '../lib/signOut'
 import { getCatData,getEventData } from '../lib/data'
-import { date } from 'zod';
 
 export const dynamic = 'auto',
     dynamicParams = true,

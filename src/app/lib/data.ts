@@ -13,7 +13,7 @@ export async function getCatData() {
 export async function getEventData(CategoryId:any) {
     const url = `http://127.0.0.1:8090/api/collections/Events/records?page=1&perPage=30&filter=Fk_Category_Id='${CategoryId}'`
     console.log(`url: ${url}`)
-    const record = await fetch(`http://127.0.0.1:8090/api/collections/Events/records?page=1&perPage=30&filter=Fk_Category_Id='${CategoryId}'`)
+    const record = await fetch(`${url}`)
     const data = await record.json();
     return data?.items as any[];
 }
