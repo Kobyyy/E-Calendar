@@ -1,7 +1,8 @@
 'use client'
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { pb, currentUser } from '../src/lib/pocketbase'
+import { pb, currentUser } from '../lib/pocketbase'
+import { createSession } from '../lib/createSession';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -13,14 +14,13 @@ export default function LoginPage() {
     try {
       // Send a request to the server-side API route for authentication
       await pb.collection('Users').authWithPassword(username,password)
-      console.log(currentUser)
       if (pb.authStore.isValid) {
+        await createSession(currentUser,pb.authStore.isValid,username)
         router.push('/dashboard'); // Redirect to the notes page upon successful login
-      } else {
-        alert("auth error"); // Display an error message if authentication fails
-      }
+      } 
     } catch (error) {
       console.error('Error during login:', error);
+      alert("auth error")
     }
   };
 

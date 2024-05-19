@@ -18,7 +18,6 @@ export default function createNote(){
     }
     return(
     <Draggable>
-    <Resizable minHeight={295} minWidth={152}>
     <div>
         <form onSubmit ={create} className="hover-test duration-0 transition-none bg-indigo-400 grid grid-cols-3 gap-y-1 grid-flow-col grid-rows-3" >
             <h3 className=" col-span-3">Create a new Note</h3>
@@ -27,7 +26,6 @@ export default function createNote(){
             <button className = " col-span-3" type="submit">Create Note</button>
         </form>
     </div>
-    </Resizable>
     </Draggable>
     )
 }
