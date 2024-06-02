@@ -1,7 +1,6 @@
 'use client';
 
 import {useState} from "react";
-import { Resizable } from 're-resizable';
 import PocketBase from 'pocketbase';
 import Draggable from 'react-draggable';
 
